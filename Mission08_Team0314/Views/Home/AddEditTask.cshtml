@@ -1,10 +1,66 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
-@{
+﻿@{
     ViewData["Title"] = "Add/Edit Task";
 }
 
-<h1>Add/Edit Task</h1>
+<h1 class="display-4 text-center">Add / Edit</h1>
 
+<!--<div class="text-center">
+    <form method="post">
+        <div asp-validation-summary="All"></div>
+        <label asp-for="Task">Task:</label>
+        <input asp-for="Task" /><br />
+        <label asp-for="DueDate">Due Date:</label>
+        <input asp-for="DueDate" /><br />
+        <label asp-for="Quadrant">Quadrant:</label>
+        <input asp-for="Quadrant" /><br />
+        <label asp-for="Category">Category:</label>
+        <select asp-for="Category">-->
+@*dropdown for category*@
+<!--<option value="">Select a Category</option>
+    <option value="Home">Home</option>
+    <option value="School">School</option>
+    <option value="Work">Work</option>
+    <option value="Church">Church</option>
+</select><br />
+<label asp-for="Completed">Completed?:</label>
+<select asp-for="Completed">-->
+@*dropdown for completed*@
+<!--<option value="">Select</option>
+            <option value="true">Yes</option>
+            <option value="false">No</option>
+        </select><br />
+
+        <button type="submit">Add</button>
+    </form>
+</div>-->
+
+<div class="text-center">
+    <form method="post">
+        <div asp-validation-summary="All"></div>
+        <label>Task:</label>
+        <input /><br />
+        <label>Due Date:</label>
+        <input /><br />
+        <label>Quadrant:</label>
+        <input /><br />
+        <label>Category:</label>
+        <select>
+            @*dropdown for category*@
+            <option value="">Select a Category</option>
+            <option value="Home">Home</option>
+            <option value="School">School</option>
+            <option value="Work">Work</option>
+            <option value="Church">Church</option>
+        </select><br />
+        <label>Completed?:</label>
+        <select>
+            @*dropdown for completed*@
+            <option value="">Select</option>
+            <option value="true">Yes</option>
+            <option value="false">No</option>
+        </select><br /><br />
+
+        <button type="submit">Add</button>
+    </form>
+</div>
 
