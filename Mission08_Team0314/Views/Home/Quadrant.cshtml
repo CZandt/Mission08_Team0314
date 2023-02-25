@@ -29,10 +29,72 @@
         <h4 class="text-center">Important</h4>
     </div>
     <div class="col-5 col-sm-5" style="border: 1px solid black">
-        <p>&nbsp;</p>
+        <table class="table">
+            <thead>
+                <tr>
+                    <td>Task Name</td>
+                    <td>Category</td>
+                    <td>Due Date</td>
+                    <td>Edit</td>
+                    <td>Delete</td>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var record in Model)
+                {
+                    if (record.Quadrant == 1 && record.Completed == false)
+                    {
+                        <tr>
+                            <td>@record.TaskName</td>
+                            <td>@record.Category.CategoryName</td>
+                            <td>@record.DueDate</td>
+                            <!-- THESE BELOW NEED THE ROUTE ID THING TO PASS THROUGH THE PK-->
+                            <td><a asp-controller="Home" asp-action="Edit" asp-route-id="@record.TaskID">Edit</a></td>
+                            <td><a asp-controller="Home" asp-action="Delete" asp-route-id="@record.TaskID">Delete</a></td>
+                            <td><a asp-controller="Home" asp-action="Test" asp-route-id="@record.TaskID">Mark Complete</a></td>
+                        </tr>
+
+
+                    }
+
+                }
+
+            </tbody>
+        </table>
     </div>
     <div class="col-5 col-sm-5" style="border: 1px solid black">
-        <p>&nbsp;</p>
+        <table class="table">
+            <thead>
+                <tr>
+                    <td>Task Name</td>
+                    <td>Category</td>
+                    <td>Due Date</td>
+                    <td>Edit</td>
+                    <td>Delete</td>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var record in Model)
+                {
+                    if (record.Quadrant == 2 && record.Completed == false)
+                    {
+                        <tr>
+                            <td>@record.TaskName</td>
+                            <td>@record.Category.CategoryName</td>
+                            <td>@record.DueDate</td>
+                            <!-- THESE BELOW NEED THE ROUTE ID THING TO PASS THROUGH THE PK-->
+                            <td><a asp-controller="Home" asp-action="Edit" asp-route-id="@record.TaskID">Edit</a></td>
+                            <td><a asp-controller="Home" asp-action="Delete" asp-route-id="@record.TaskID">Delete</a></td>
+                            <td><a asp-controller="Home" asp-action="Test" asp-route-id="@record.TaskID">Mark Complete</a></td>
+                        </tr>
+
+
+                    }
+
+                }
+
+            </tbody>
+        </table>
     </div>
 </div>
 <div class="row">
@@ -40,27 +102,72 @@
         <h4 class="text-center">Not Important</h4>
     </div>
     <div class="col-5 col-sm-5" style="border: 1px solid black">
-        <table class="table table-bordered">
+        <table class="table">
+        
             <thead>
                 <tr>
                     <td>Task Name</td>
                     <td>Category</td>
+                    <td>Due Date</td>
                     <td>Edit</td>
                     <td>Delete</td>
                 </tr>
             </thead>
             <tbody>
-                <tr>
-                    <td>Dishes</td>
-                    <td>Housework</td>
-                    <td><a asp-controller="Home" asp-action="AddEditTask">Edit</a></td>
-                    <td><a asp-controller="Home" asp-action="Delete">Delete</a></td>
-                </tr>
+                @foreach (var record in Model)
+                {
+                    if (record.Quadrant == 3 && record.Completed == false)
+                    {
+                        <tr>
+                            <td>@record.TaskName</td>
+                            <td>@record.Category.CategoryName</td>
+                            <td>@record.DueDate</td>
+                            <!-- THESE BELOW NEED THE ROUTE ID THING TO PASS THROUGH THE PK-->
+                            <td><a asp-controller="Home" asp-action="Edit" asp-route-id="@record.TaskID">Edit</a></td>
+                            <td><a asp-controller="Home" asp-action="Delete" asp-route-id="@record.TaskID">Delete</a></td>
+                            <td><a asp-controller="Home" asp-action="Test" asp-route-id="@record.TaskID">Mark Complete</a></td>
+                        </tr>
+
+
+                    }
+
+                }
+
             </tbody>
         </table>
     </div>
     <div class="col-5 col-sm-5" style="border: 1px solid black">
-        <p>TEST TEST TEST</p>
+        <table class="table">
+            <thead>
+                <tr>
+                    <td>Task Name</td>
+                    <td>Category</td>
+                    <td>Due Date</td>
+                    <td>Edit</td>
+                    <td>Delete</td>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var record in Model)
+                {
+                    if (record.Quadrant == 4 && record.Completed == false)
+                    {
+                        <tr>
+                            <td>@record.TaskName</td>
+                            <td>@record.Category.CategoryName</td>
+                            <td>@record.DueDate</td>
+                            <!-- THESE BELOW NEED THE ROUTE ID THING TO PASS THROUGH THE PK-->
+                            <td><a asp-controller="Home" asp-action="Edit" asp-route-id="@record.TaskID">Edit</a></td>
+                            <td><a asp-controller="Home" asp-action="Delete" asp-route-id="@record.TaskID">Delete</a></td>
+                            <td><a asp-controller="Home" asp-action="Test" asp-route-id="@record.TaskID">Mark Complete</a></td>
+                        </tr>
+
+
+                    }
+
+                }
+            </tbody>
+        </table>
     </div>
 </div>
 

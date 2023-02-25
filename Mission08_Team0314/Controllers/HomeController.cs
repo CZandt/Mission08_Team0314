@@ -42,14 +42,14 @@ namespace Mission08_Team0314.Controllers
             return View();
         }
         // controlers to edit task and update quadrant view
-        public IActionResult Edit(int taskid)
+        public IActionResult Edit(int id)
         {
             ViewBag.Categories = _SQLiteContext.categories.ToList();
 
             // grabbing a specific movie in this case, by movieid
-            var task = _SQLiteContext.tasks.Single(x => x.TaskID == taskid);
+            var task = _SQLiteContext.tasks.Single(x => x.TaskID == id);
 
-            return View("AddTask", task);
+            return View("AddEditTask", task);
         }
         [HttpPost]
         public IActionResult Edit(Models.Task T1)
@@ -62,11 +62,11 @@ namespace Mission08_Team0314.Controllers
         }
         //controlers to delete a task from the quadrant view
         [HttpGet]
-        public IActionResult Delete(int taskid)
+        public IActionResult Delete(int id)
         {
-            var movie = _SQLiteContext.tasks.Single(x => x.TaskID == taskid);
+            var task = _SQLiteContext.tasks.Single(x => x.TaskID == id);
 
-            return View(movie);
+            return View(task);
         }
         [HttpPost]
         public IActionResult Delete(Models.Task T1)
@@ -91,6 +91,20 @@ namespace Mission08_Team0314.Controllers
             var tasks = _SQLiteContext.tasks.ToList();
 
             return View(tasks);
+        }
+
+        [HttpGet]
+        public IActionResult Test(int id)
+        {
+            var task = _SQLiteContext.tasks.Single(x => x.TaskID == id);
+
+            // task.Completed = true;
+            task.Completed = true;
+
+            _SQLiteContext.Update(task);
+            _SQLiteContext.SaveChanges();
+
+            return RedirectToAction("Quadrant");
         }
     }
 }
