@@ -34,19 +34,36 @@ namespace Mission08_Team0314.Controllers
 
             return View(tasks);
         }
-
+        //add new task
         [HttpGet]
         public IActionResult AddEditTask()
         {
             ViewBag.categories = _SQLiteContext.categories.ToList();
-            return View();
+
+            return View(new Models.Task());
+        }
+        [HttpPost]
+        public IActionResult AddEditTask(Models.Task task)
+        {
+            if (ModelState.IsValid)
+            {
+                _SQLiteContext.Add(task);
+                _SQLiteContext.SaveChanges();
+                return View("Confirmation", task);
+            }
+            else
+            {
+                ViewBag.categories = _SQLiteContext.categories.ToList();
+                return View(task);
+            }
         }
         // controlers to edit task and update quadrant view
+        [HttpGet]
         public IActionResult Edit(int id)
         {
             ViewBag.Categories = _SQLiteContext.categories.ToList();
 
-            // grabbing a specific movie in this case, by movieid
+            // grabbing a specific task in this case, by taskid
             var task = _SQLiteContext.tasks.Single(x => x.TaskID == id);
 
             return View("AddEditTask", task);
@@ -75,14 +92,6 @@ namespace Mission08_Team0314.Controllers
             _SQLiteContext.tasks.Remove(T1);
             _SQLiteContext.SaveChanges();
             return RedirectToAction("Quadrant");
-        }
-
-        [HttpPost]
-        public IActionResult AddEditTask(Models.Task task)
-        {
-            _SQLiteContext.Add(task);
-            _SQLiteContext.SaveChanges();
-            return View("Confirmation", task);
         }
 
         [HttpGet]
