@@ -5,6 +5,36 @@
     ViewData["Title"] = "Add/Edit Task";
 }
 
+@model Mission08_Team0314.Models.Task
+
 <h1>Add/Edit Task</h1>
+
+<div>
+    <form method="post">
+
+        <label asp-for="TaskName">Task:</label>
+        <input asp-for="TaskName" />
+        <br />
+        <label asp-for="DueDate">Due Date:</label>
+        <input asp-for="DueDate" />
+        <br />
+        <label asp-for="Quadrant">Quadrant:</label>
+        <input asp-for="Quadrant" />
+        <br />
+        <label asp-for="CategoryID">Category:</label>
+        <select asp-for="CategoryID">
+            <option value="Home">Select a category</option>
+            @foreach (Category c in ViewBag.categories)
+            {
+                <option value="@c.CategoryID">@c.CategoryName</option>
+            }
+        </select>
+        <br />
+        <label asp-for="Completed">Completed:</label>
+        <input asp-for="Completed" />
+        <br />
+        <button type="submit">Submit</button>
+    </form>
+</div>
 
 

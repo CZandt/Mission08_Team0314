@@ -11,19 +11,15 @@ namespace Mission08_Team0314.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly ILogger<HomeController> _logger;
+        private TaskContext _SQLiteContext { get; set; }
 
-        public HomeController(ILogger<HomeController> logger)
+        //Constructor
+        public HomeController(TaskContext x)
         {
-            _logger = logger;
+            _SQLiteContext = x;
         }
 
         public IActionResult Index()
-        {
-            return View();
-        }
-
-        public IActionResult Privacy()
         {
             return View();
         }
@@ -33,15 +29,27 @@ namespace Mission08_Team0314.Controllers
             return View();
         }
 
+        [HttpGet]
         public IActionResult AddEditTask()
         {
+            ViewBag.categories = _SQLiteContext.categories.ToList();
             return View();
         }
 
-        [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
-        public IActionResult Error()
+        [HttpPost]
+        public IActionResult AddEditTask(Models.Task task)
         {
-            return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+            _SQLiteContext.Add(task);
+            _SQLiteContext.SaveChanges();
+            return View("Confirmation", task);
+        }
+
+        [HttpGet]
+        public IActionResult ShowTasks()
+        {
+            var tasks = _SQLiteContext.tasks.ToList();
+
+            return View(tasks);
         }
     }
 }
