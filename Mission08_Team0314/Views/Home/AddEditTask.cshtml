@@ -9,7 +9,11 @@
 <div>
     <form method="post">
 
-        <input asp-for="TaskID" type = "hidden" />
+        @*For handling errors*@
+        <div asp-validation-summary="All"></div>
+
+        @*hidden ID field to allow editing*@
+        <input asp-for="TaskID" type="hidden" />
         <label asp-for="TaskName">Task:</label>
         <input asp-for="TaskName" />
         <br />
@@ -21,7 +25,7 @@
         <br />
         <label asp-for="CategoryID">Category:</label>
         <select asp-for="CategoryID">
-            <option value="Home">Select a category</option>
+            <option value="Empty">Select a category</option>
             @foreach (Category c in ViewBag.categories)
             {
                 <option value="@c.CategoryID">@c.CategoryName</option>

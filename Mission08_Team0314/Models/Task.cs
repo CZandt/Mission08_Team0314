@@ -11,10 +11,10 @@ namespace Mission08_Team0314.Models
         [Key]
         [Required]
         public int TaskID { get; set; }
-        [Required]
+        [Required (ErrorMessage = "Please enter a task name")]
         public string TaskName { get; set; }
         public DateTime DueDate { get; set; }
-        [Required]
+        [Required (ErrorMessage = "Please enter a number 1-4")]
         [Range(1, 4, ErrorMessage = "Please enter a number 1-4")]
         public byte Quadrant { get; set; }
         public bool Completed { get; set; }
