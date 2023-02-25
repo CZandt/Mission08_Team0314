@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using Mission08_Team0314.Models;
 using System;
@@ -26,7 +27,12 @@ namespace Mission08_Team0314.Controllers
 
         public IActionResult Quadrant()
         {
-            return View();
+
+            var tasks = _SQLiteContext.tasks
+                .Include(x => x.Category)
+                .ToList();
+
+            return View(tasks);
         }
 
         [HttpGet]
@@ -38,19 +44,19 @@ namespace Mission08_Team0314.Controllers
         // controlers to edit task and update quadrant view
         public IActionResult Edit(int taskid)
         {
-            ViewBag.Categories = blahContext.Categories.ToList();
+            ViewBag.Categories = _SQLiteContext.categories.ToList();
 
             // grabbing a specific movie in this case, by movieid
-            var task = blahContext.Responses.Single(x => x.TaskID == taskid);
+            var task = _SQLiteContext.tasks.Single(x => x.TaskID == taskid);
 
             return View("AddTask", task);
         }
         [HttpPost]
-        public IActionResult Edit(ApplicationResponse ar1)
+        public IActionResult Edit(Models.Task T1)
         {
 
-            blahContext.Update(ar1);
-            blahContext.SaveChanges();
+            _SQLiteContext.Update(T1);
+            _SQLiteContext.SaveChanges();
 
             return RedirectToAction("Quadrant");
         }
@@ -58,16 +64,16 @@ namespace Mission08_Team0314.Controllers
         [HttpGet]
         public IActionResult Delete(int taskid)
         {
-            var movie = blahContext.Responses.Single(x => x.TaskID == taskid);
+            var movie = _SQLiteContext.tasks.Single(x => x.TaskID == taskid);
 
             return View(movie);
         }
         [HttpPost]
-        public IActionResult Delete(ApplicationResponse ar)
+        public IActionResult Delete(Models.Task T1)
         {
 
-            blahContext.Responses.Remove(ar);
-            blahContext.SaveChanges();
+            _SQLiteContext.tasks.Remove(T1);
+            _SQLiteContext.SaveChanges();
             return RedirectToAction("Quadrant");
         }
 

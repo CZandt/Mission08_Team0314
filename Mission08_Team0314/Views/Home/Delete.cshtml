@@ -2,10 +2,10 @@
 @{
     ViewData["Title"] = "Delete Entry";
 }
-@model ApplicationResponse
+@model Mission08_Team0314.Models.Task
 
 <h2>Deleting Task</h2>
-<h3>Are you sure you want to delete the entry for "@Model.Title"?</h3>
+<h3>Are you sure you want to delete the entry for "@Model.TaskName"?</h3>
 <form method="post" asp-controller="Home" asp-action="Delete">
     <button type="submit">Delete</button>
     <a asp-controller="Home" asp-action="Quadrant" class="btn btn-primary">Cancel</a>
